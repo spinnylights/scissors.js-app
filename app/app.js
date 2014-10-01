@@ -60,7 +60,7 @@
       postCut = sizFuncs[i].call(window, postCut);
     }
 
-    cutUpText.html(postCut);
+    cutUpText.val(postCut);
   });
 
 })(jQuery)
