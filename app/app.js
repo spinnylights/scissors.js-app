@@ -7,12 +7,12 @@
   toCutUp.val("Write or past text to be cut up here");
 
   var Checkboxes = {
-    reverseWords: $("#rev-words").is(':checked'),
-    shuffleWords: $("#shuf-words").is(':checked'),
-    reverseLines: $("#rev-lines").is(':checked'),
-    shuffleLines: $("#shuf-lines").is(':checked'),
-        burSplit: $("#bur-spl").is(':checked'),
-         burWord: $("#bur-wrd").is(':checked')
+    reverseWords: function() { return $("#rev-words").is(':checked'); },
+    shuffleWords: function() { return $("#shuf-words").is(':checked'); },
+    reverseLines: function() { return $("#rev-lines").is(':checked'); },
+    shuffleLines: function() { return $("#shuf-lines").is(':checked'); },
+        burSplit: function() { return $("#bur-spl").is(':checked'); },
+         burWord: function() { return $("#bur-wrd").is(':checked'); }
   }
 
   var getPreCutText = function(){
@@ -27,32 +27,32 @@
   });
 
   $("#run-cut-up").click(function(){
-    var toCut = getPreCutText();
     var sizFuncs = [];
-    var postCut = toCut;
+    var postCut = getPreCutText();
 
-    if ( Checkboxes.reverseWords ){
+    if ( Checkboxes.reverseWords() ){
       sizFuncs.unshift( Siz.reverseWords );
     }
-    if ( Checkboxes.shuffleWords ){
+    if ( Checkboxes.shuffleWords() ){
       sizFuncs.unshift( Siz.shuffleWords );
     }
-    if ( Checkboxes.reverseLines ){
+    if ( Checkboxes.reverseLines() ){
       sizFuncs.unshift( Siz.reverseLines );
     }
-    if ( Checkboxes.shuffleLines ){
+    if ( Checkboxes.shuffleLines() ){
       sizFuncs.unshift( Siz.shuffleLines );
     }
-    if ( Checkboxes.burSplit ){
+    if ( Checkboxes.burSplit() ){
       sizFuncs.unshift( Siz.burSpl );
     }
-    if ( Checkboxes.burWord ){
+    if ( Checkboxes.burWord() ){
       sizFuncs.unshift( Siz.burWrd );
     }
 
     sizFuncs = _.shuffle(sizFuncs);
 
     console.log(postCut);
+    console.log(sizFuncs);
 
     for (var i = 0; i < sizFuncs.length; i++){
       console.log(postCut);
